@@ -35,6 +35,9 @@ $ yarn add simple-react-utils
 ## Components
 
 -  [If](#if)
+-  [Then](#then)
+-  [Else](#else)
+-  [For](#for)
 
 ## If
 
@@ -106,6 +109,87 @@ export default function YourComponent() {
             <SomeLazyComponent />
             <h2>this is will render</h2>
          </If>
+      </div>
+   )
+}
+```
+
+## Then
+
+| Prop     |   Type    | Required | Default | Description                 |
+| -------- | :-------: | :------: | :-----: | --------------------------- |
+| children | ReactNode |    ❌    |  null   | Renders the passed children |
+
+### Example
+
+```tsx
+import { If, Then } from 'awesome-react-components'
+
+export default function YourComponent() {
+   return (
+      <div>
+         <If codition={true}>
+            <Then>
+               <h1>this will render.</h1>
+            </Then>
+         </If>
+      </div>
+   )
+}
+```
+
+## Else
+
+| Prop     |   Type    | Required | Default | Description                 |
+| -------- | :-------: | :------: | :-----: | --------------------------- |
+| children | ReactNode |    ❌    |  null   | Renders the passed children |
+
+### Example
+
+```tsx
+import { If, Then, Else } from 'awesome-react-components'
+
+export default function YourComponent() {
+   return (
+      <div>
+         <If codition={2 + 2 == 4}>
+            <Then>
+               <h1>this will render.</h1>
+            </Then>
+            <Else>
+               <h1>this will not render.</h1>
+            </Else>
+         </If>
+      </div>
+   )
+}
+```
+
+## For
+
+| Prop     |   Type    | Required | Default | Description                 |
+| -------- | :-------: | :------: | :-----: | --------------------------- |
+| loop     |  number   |    ❌    |    0    | Needed to run the loop      |
+| children | ReactNode |    ❌    |  null   | Renders the passed children |
+
+### Example
+
+```tsx
+import { For } from 'awesome-react-components'
+import CardComponent from './CardComponent'
+
+export default function YourComponent() {
+   const Data = [
+      { id: 1, course: 'Javascript' },
+      { id: 2, course: 'React' },
+   ]
+   return (
+      <div>
+         <For loop={Data.length}>
+            {(i) => {
+               return <CardComponent key={Data[i].id}>{Data[i].course}</CardComponent>
+            }}
+         </For>
       </div>
    )
 }
