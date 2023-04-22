@@ -1,0 +1,51 @@
+{
+  "name": "simple-react-utils",
+  "version": "0.0.0",
+  "description": "A great collection of React utility components",
+  "keywords": [
+    "react utility components",
+    "react hooks",
+    "hooks",
+    "components",
+    "utility components"
+  ],
+  "homepage": "https://github.com/Ashish-simpleCoder/simple-react-utils",
+  "author": "Ashish-simpleCoder",
+  "license": "MIT",
+  "private": false,
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "prepare": "pnpm build",
+    "release": "changeset publish",
+    "type-check": "tsc",
+    "cs": "pnpm changeset",
+    "format-code": "prettier --write ./src"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.1",
+    "@types/node": "^18.15.13",
+    "@types/react": "^18.0.38",
+    "@types/react-dom": "^18.0.11",
+    "prettier": "^2.8.7",
+    "terser": "^5.17.1",
+    "ts-node": "^10.9.1",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
