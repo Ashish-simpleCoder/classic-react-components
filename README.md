@@ -10,7 +10,7 @@
 
 # 🚀 simple-react-components
 
-An simple React Library for **Utility** **Components** and **Hooks**.
+A simple React Library for **Utility** **Components** and **Hooks**.
 
 ## Features
 
