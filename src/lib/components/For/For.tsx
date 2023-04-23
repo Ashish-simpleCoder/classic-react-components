@@ -18,13 +18,13 @@ export default function For({
       return <></>
    }
 
-   return <Elements parentChildren={children} loop={loop} />
+   return <Elements item={children} loop={loop} />
 }
 
-function Elements({ parentChildren, loop }: { parentChildren: (i: number) => JSX.Element; loop: number }) {
+function Elements({ item, loop }: { item: (i: number) => JSX.Element; loop: number }) {
    let arr = []
    for (let i = 0; i < Number(loop); i++) {
-      const element = parentChildren(i)
+      const element = item(i)
       arr.push(element)
    }
 
