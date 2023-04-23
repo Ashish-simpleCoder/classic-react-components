@@ -12,6 +12,11 @@
 
 An simple React Library for **Utility** **Components** and **Hooks**.
 
+## Features
+
+-  Comes with treeshaking
+-  Built in Typescript
+
 ## Installation
 
 For npm users
