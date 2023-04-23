@@ -25,6 +25,7 @@
     "prepare": "pnpm build",
     "release": "changeset publish",
     "type-check": "tsc",
+    "size": "size-limit",
     "cs": "pnpm changeset",
     "format-code": "prettier --write ./src"
   },
@@ -36,10 +37,12 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
+    "@size-limit/preset-small-lib": "^8.2.4",
     "@types/node": "^18.15.13",
     "@types/react": "^18.0.38",
     "@types/react-dom": "^18.0.11",
     "prettier": "^2.8.7",
+    "size-limit": "^8.2.4",
     "terser": "^5.17.1",
     "ts-node": "^10.9.1",
     "tsup": "^6.7.0",
