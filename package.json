@@ -1,5 +1,5 @@
 {
-  "name": "simple-react-utils",
+  "name": "simple-react-components",
   "version": "0.0.0",
   "description": "A great collection of React utility components",
   "keywords": [
@@ -9,7 +9,7 @@
     "components",
     "utility components"
   ],
-  "homepage": "https://github.com/Ashish-simpleCoder/simple-react-utils",
+  "homepage": "https://github.com/Ashish-simpleCoder/simple-react-components",
   "author": "Ashish-simpleCoder",
   "license": "MIT",
   "private": false,

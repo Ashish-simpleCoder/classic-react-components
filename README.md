@@ -1,14 +1,14 @@
 <p align="left">
-  <a href="https://badge.fury.io/js/simple-react-utils">
-    <img src="https://badge.fury.io/js/simple-react-utils.svg" alt="npm version">
+  <a href="https://badge.fury.io/js/simple-react-components">
+    <img src="https://badge.fury.io/js/simple-react-components.svg" alt="npm version">
   </a>
     <img src="https://img.shields.io/badge/Licence-MIT-success" alt="MIT license." />
-  <a href="https://github.com/Ashish-simplecoder/simple-react-utils/actions/workflows/main.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/Ashish-simpleCoder/simple-react-utils/main.yml?label=CI&logo=GitHub" alt="Jest is released under the MIT license." />
+  <a href="https://github.com/Ashish-simplecoder/simple-react-components/actions/workflows/main.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/Ashish-simpleCoder/simple-react-components/main.yml?label=CI&logo=GitHub" alt="Jest is released under the MIT license." />
   </a>
 </p>
 
-# 🚀 simple-react-utils
+# 🚀 simple-react-components
 
 An Awesome React Library for **Utility** **Components** and **Hooks**.
 
@@ -17,19 +17,19 @@ An Awesome React Library for **Utility** **Components** and **Hooks**.
 For npm users
 
 ```bash
-$ npm install simple-react-utils
+$ npm install simple-react-components
 ```
 
 For pnpm users
 
 ```bash
-$ pnpm install simple-react-utils
+$ pnpm install simple-react-components
 ```
 
 For yarn users
 
 ```bash
-$ yarn add simple-react-utils
+$ yarn add simple-react-components
 ```
 
 ## Components
@@ -64,7 +64,7 @@ $ yarn add simple-react-utils
 ### Example
 
 ```tsx
-import { If } from 'simple-react-utils'
+import { If } from 'simple-react-components'
 
 export default function YourComponent() {
    return (
@@ -94,7 +94,7 @@ export default function YourComponent() {
 ### Usage with Suspense
 
 ```tsx
-import { If } from 'simple-react-utils'
+import { If } from 'simple-react-components'
 import { lazy } from 'react'
 
 const SomeLazyComponent = lazy(() => import('./SomeLazyComponent'))
