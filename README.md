@@ -10,7 +10,7 @@
 
 # 🚀 simple-react-components
 
-An Awesome React Library for **Utility** **Components** and **Hooks**.
+An simple React Library for **Utility** **Components** and **Hooks**.
 
 ## Installation
 
@@ -94,7 +94,7 @@ export default function YourComponent() {
 ### Usage with Suspense
 
 ```tsx
-import { If } from 'simple-react-components'
+import { If, Then, Else } from 'simple-react-components'
 import { lazy } from 'react'
 
 const SomeLazyComponent = lazy(() => import('./SomeLazyComponent'))
@@ -106,8 +106,12 @@ export default function YourComponent() {
          <If codition={false} suspense>
             {/* this component code file will only download when the condition will be true.
              In this case, codition is falsy then it will not be downloaded. */}
-            <SomeLazyComponent />
-            <h2>this is will render</h2>
+            <Then>
+               <SomeLazyComponent />
+            </Then>
+            <Else>
+               <h2>this is will render</h2>
+            </Else>
          </If>
       </div>
    )
@@ -123,7 +127,7 @@ export default function YourComponent() {
 ### Example
 
 ```tsx
-import { If, Then } from 'awesome-react-components'
+import { If, Then } from 'simple-react-components'
 
 export default function YourComponent() {
    return (
@@ -147,7 +151,7 @@ export default function YourComponent() {
 ### Example
 
 ```tsx
-import { If, Then, Else } from 'awesome-react-components'
+import { If, Then, Else } from 'simple-react-components'
 
 export default function YourComponent() {
    return (
@@ -175,7 +179,7 @@ export default function YourComponent() {
 ### Example
 
 ```tsx
-import { For } from 'awesome-react-components'
+import { For } from 'simple-react-components'
 import CardComponent from './CardComponent'
 
 export default function YourComponent() {
