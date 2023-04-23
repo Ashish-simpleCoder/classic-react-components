@@ -41,12 +41,12 @@ $ yarn add simple-react-components
 
 ## If
 
-| Prop      |   Type    | Required | Default  | Description                                                                           |
-| --------- | :-------: | :------: | :------: | ------------------------------------------------------------------------------------- |
-| condition |    any    |    ❌    |  false   | Based on evaluation of the condition flag the component will return null or children  |
-| children  | ReactNode |    ❌    |   null   | To render the children                                                                |
-| suspense  |  boolean  |    ❌    |  false   | To lazy load the component or not                                                     |
-| fallback  | ReactNode |    ❌    | Fragment | Fallback needed to show unless the component is loaded fully for suspensed components |
+| Prop      |   Type    | Required | Default | Description                                                                                   |
+| --------- | :-------: | :------: | :-----: | --------------------------------------------------------------------------------------------- |
+| condition |    any    |    ❌    |  false  | Based on evaluation of the condition flag the component will return null or children          |
+| children  | ReactNode |    ❌    |  null   | To render the children                                                                        |
+| suspense  |  boolean  |    ❌    |  false  | To lazy load the component or not                                                             |
+| fallback  | ReactNode |    ❌    |  null   | Fallback needed to show untill the component is loaded fully. Needed for suspensed components |
 
 ### Working
 
