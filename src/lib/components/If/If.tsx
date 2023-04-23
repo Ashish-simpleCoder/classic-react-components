@@ -4,13 +4,14 @@ export default function If({
    condition = false,
    children = null,
    suspense,
-   fallback = <></>,
+   fallback = null,
 }: {
    condition?: any
    children?: ReactNode
    suspense?: boolean
    fallback?: ReactNode
 }): JSX.Element | null {
+   // doing double-boolean negation
    const conditionNegation = !!condition
    const isArray = Array.isArray(children)
 
