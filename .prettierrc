@@ -6,5 +6,5 @@
    "singleQuote": true,
    "tabWidth": 3,
    "jsxSingleQuote": true,
-   "trailingComma": "all"
+   "trailingComma": "es5"
 }
