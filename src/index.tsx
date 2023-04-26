@@ -5,5 +5,5 @@ export { default as Then } from './lib/components/Then/Then'
 export { default as For } from './lib/components/For/For'
 
 // hooks exports
-export { default as useOnMountEffect } from './lib/hooks/use-on-mount-effect'
-export { default as useSyncedRef } from './lib/hooks/use-synced-ref'
+export { default as useOnMountEffect } from './lib/hooks/use-on-mount-effect/use-on-mount-effect'
+export { default as useSyncedRef } from './lib/hooks/use-synced-ref/use-synced-ref'
