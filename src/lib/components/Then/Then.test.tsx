@@ -1,20 +1,20 @@
-import Else from './Else'
+import Then from './Then'
 import { render, screen } from '@testing-library/react'
 
-describe('Else.tsx', () => {
+describe('Then.tsx', () => {
    it('should render without any errors or crash', () => {
-      render(<Else>This is the content</Else>)
+      render(<Then>This is the content</Then>)
    })
 
    it('should render fine without any children', () => {
-      render(<Else></Else>)
+      render(<Then></Then>)
    })
 
    it('should render the passes children', () => {
       render(
-         <Else>
+         <Then>
             <div data-testid='element'> this is element </div>
-         </Else>
+         </Then>
       )
       expect(screen.getByTestId('element')).toBeInTheDocument()
    })
