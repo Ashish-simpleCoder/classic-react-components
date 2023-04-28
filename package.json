@@ -28,7 +28,7 @@
     "size": "size-limit",
     "cs": "pnpm changeset",
     "format-code": "prettier --write ./src",
-    "test": "vitest"
+    "test": "vitest --coverage"
   },
   "peerDependencies": {
     "react": ">=16"
