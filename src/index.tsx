@@ -3,7 +3,11 @@ export { default as If } from './lib/components/If/If'
 export { default as Else } from './lib/components/Else/Else'
 export { default as Then } from './lib/components/Then/Then'
 export { default as For } from './lib/components/For/For'
+export { default as Switch } from './lib/components/Switch/Switch'
 
 // hooks exports
 export { default as useOnMountEffect } from './lib/hooks/use-on-mount-effect/use-on-mount-effect'
 export { default as useSyncedRef } from './lib/hooks/use-synced-ref/use-synced-ref'
+export { default as useDebouncedFn } from './lib/hooks/use-debounced-fn/use-debounced-fn'
+export { default as useScrollToTopEffect } from './lib/hooks/use-scroll-to-top-effect/use-scroll-to-top-effect'
+export { default as useWindowResize } from './lib/hooks/use-window-resize/use-window-resize'
