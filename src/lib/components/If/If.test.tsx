@@ -10,6 +10,17 @@ describe('If.tsx', () => {
          </If>
       )
    })
+   it('should render without any errors or crash without condition prop', () => {
+      render(
+         <If>
+            <div data-testid='children'>this is content</div>
+         </If>
+      )
+      expect(screen.queryByTestId('children')).not.toBeInTheDocument()
+   })
+   it('should render without any errors or crash without children', () => {
+      render(<If></If>)
+   })
 
    describe('should be able to handle all scenarios for one children', () => {
       it('should render children if condition is true', () => {
@@ -51,7 +62,9 @@ describe('If.tsx', () => {
 
             render(
                <If condition={true} suspense fallback={<h1 data-testid='fallback'>loading....</h1>}>
-                  <DumbComponent />
+                  <DumbComponent>
+                     <div data-testid='children-dumb'></div>
+                  </DumbComponent>
                </If>
             )
             expect(screen.queryByTestId('fallback')).toBeInTheDocument()
@@ -59,7 +72,7 @@ describe('If.tsx', () => {
 
             await waitFor(() => {
                expect(screen.queryByTestId('fallback')).not.toBeInTheDocument()
-               expect(screen.queryByTestId('dumb')).toBeInTheDocument()
+               expect(screen.queryByTestId('children-dumb')).toBeInTheDocument()
             })
          })
 
