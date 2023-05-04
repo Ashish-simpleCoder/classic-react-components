@@ -9,6 +9,9 @@
     "components",
     "utility components"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://github.com/Ashish-simpleCoder/simple-react-components",
   "author": "Ashish-simpleCoder",
   "license": "MIT",
