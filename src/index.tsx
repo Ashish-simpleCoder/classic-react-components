@@ -11,3 +11,6 @@ export { default as useSyncedRef } from './lib/hooks/use-synced-ref/use-synced-r
 export { default as useDebouncedFn } from './lib/hooks/use-debounced-fn/use-debounced-fn'
 export { default as useScrollToTopEffect } from './lib/hooks/use-scroll-to-top-effect/use-scroll-to-top-effect'
 export { default as useWindowResize } from './lib/hooks/use-window-resize/use-window-resize'
+export { default as useIsOnline } from './lib/hooks/use-is-online/use-is-online'
+export { default as useEventListener } from './lib/hooks/use-event-listener/use-event-listener'
+export { default as useEsacpeKeyListener } from './lib/hooks/use-escape-key-listener/use-escape-key-listener'

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 export default function useDebouncedFn<T extends (...args: any[]) => any>(cb: T, delay: number = 100) {
    let delayRef = useRef(delay)
