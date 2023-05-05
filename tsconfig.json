@@ -23,7 +23,8 @@
     "declarationMap": true,
     "noUncheckedIndexedAccess": true,
     "alwaysStrict": true,
-    "removeComments": false
+    "removeComments": false,
+    "noErrorTruncation": true
   },
   // "ts-node": {
   //   "compilerOptions": {
