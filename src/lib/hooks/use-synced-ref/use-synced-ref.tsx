@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 
 export default function useSyncedRef<T>(state: T) {
    const stateRef = useRef(state)
-   useEffect(() => {
-      stateRef.current = state
-   }, [state])
+
+   stateRef.current = state
 
    return stateRef
 }
