@@ -14,3 +14,5 @@ export { default as useWindowResize } from './lib/hooks/use-window-resize/use-wi
 export { default as useIsOnline } from './lib/hooks/use-is-online/use-is-online'
 export { default as useEventListener } from './lib/hooks/use-event-listener/use-event-listener'
 export { default as useEsacpeKeyListener } from './lib/hooks/use-escape-key-listener/use-escape-key-listener'
+export { default as useTimeout } from './lib/hooks/use-timeout/use-timeout'
+export { default as useInterval } from './lib/hooks/use-interval/use-interval'
