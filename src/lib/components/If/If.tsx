@@ -1,4 +1,5 @@
-import React, { ReactNode, Suspense } from 'react'
+import type { ReactNode } from 'react'
+import React, { Suspense } from 'react'
 
 export default function If({
    condition = false,

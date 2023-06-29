@@ -1,5 +1,5 @@
-import React, { Children, useRef } from 'react'
 import type { ReactNode } from 'react'
+import React, { Children, useRef } from 'react'
 
 type SwitchProps<T> = {
    children: ({
