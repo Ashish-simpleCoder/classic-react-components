@@ -1,32 +1,42 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 export default function useWindowResize({
-   breakPoint,
-   breakPoint2,
-   above = false,
+   start,
+   end,
+   comparison = '<',
    cb,
 }: {
-   breakPoint: number
-   breakPoint2?: number
-   above: boolean
+   start: number
+   end?: number
+   comparison: '>' | '<' | 'betweeen'
    cb?: (show: boolean) => void
 }) {
    const [show, setShow] = useState(false)
-   const breakPointsRef = useRef({ breakPoint, breakPoint2 })
+   const breakPointsRef = useRef({ start, end, comparison })
 
-   breakPointsRef.current = { breakPoint, breakPoint2 }
+   breakPointsRef.current = { start, end, comparison }
 
    useEffect(() => {
       const listener = () => {
-         const { breakPoint: breakPointKey, breakPoint2: breakPointKey2 } = breakPointsRef.current
+         const { start, end, comparison } = breakPointsRef.current
 
-         if (breakPointKey && breakPointKey2) {
-            const result = window.innerWidth > breakPointKey && window.innerWidth < breakPointKey2
+         if (comparison == 'betweeen') {
+            if (!end) {
+               return
+            }
+            const result = window.innerWidth > start && window.innerWidth < end
             setShow(result)
             cb?.(result)
             return
          }
-         const result = above ? window.innerWidth > breakPointKey : window.innerWidth < breakPointKey
+
+         let result: boolean = false
+         if (comparison == '<') {
+            result = window.innerWidth < start
+         }
+         if (comparison == '>') {
+            result = window.innerWidth > start
+         }
          setShow(result)
          cb?.(result)
       }
