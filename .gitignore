@@ -6,3 +6,4 @@ scripts
 .vscode
 example
 .DS_STORE
+./src/hooks
