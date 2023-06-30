@@ -10,6 +10,7 @@ describe('If.tsx', () => {
          </If>
       )
    })
+
    it('should render without any errors or crash without condition prop', () => {
       render(
          <If>
@@ -18,7 +19,8 @@ describe('If.tsx', () => {
       )
       expect(screen.queryByTestId('children')).not.toBeInTheDocument()
    })
-   it('should render without any errors or crash without children', () => {
+
+   it('should render without any errors or crash without children and condition prop', () => {
       render(<If></If>)
    })
 
@@ -69,6 +71,7 @@ describe('If.tsx', () => {
             )
             expect(screen.queryByTestId('fallback')).toBeInTheDocument()
             expect(screen.queryByTestId('dumb')).not.toBeInTheDocument()
+            expect(screen.queryByTestId('children-dumb')).not.toBeInTheDocument()
 
             await waitFor(() => {
                expect(screen.queryByTestId('fallback')).not.toBeInTheDocument()
