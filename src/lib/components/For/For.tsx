@@ -7,11 +7,11 @@ export default function For({
    children?: ((i: number) => JSX.Element) | null
    loop?: number
 }) {
-   if (typeof children != 'function' && children !== null) {
-      throw new Error('Children type must be a function')
+   if (children !== null && typeof children != 'function') {
+      throw new Error('Children type must be a function.')
    }
    if (Number.isNaN(Number(loop))) {
-      throw new Error('Invalid value provied for the "loop" prop')
+      throw new Error('Invalid value provided for the loop prop.')
    }
 
    if (children === null) {
@@ -22,7 +22,7 @@ export default function For({
 }
 
 function Elements({ item, loop }: { item: (i: number) => JSX.Element; loop: number }) {
-   let arr = []
+   let arr: JSX.Element[] = []
    for (let i = 0; i < Number(loop); i++) {
       const element = item(i)
       arr.push(element)
