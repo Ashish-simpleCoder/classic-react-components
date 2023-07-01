@@ -176,10 +176,10 @@ export default function YourComponent() {
 
 ## For
 
-| Prop     |   Type    | Required | Default | Description                 |
-| -------- | :-------: | :------: | :-----: | --------------------------- |
-| loop     |  number   |    ❌    |    0    | Needed to run the loop      |
-| children | ReactNode |    ❌    |  null   | Renders the passed children |
+| Prop     |   Type    | Required |  Default  | Description                 |
+| -------- | :-------: | :------: | :-------: | --------------------------- |
+| data     |   Array   |    ❌    | undefined | Needed for mapping          |
+| children | ReactNode |    ❌    |   null    | Renders the passed children |
 
 ### Example
 
@@ -194,9 +194,9 @@ export default function YourComponent() {
    ]
    return (
       <div>
-         <For loop={Data.length}>
-            {(i) => {
-               return <CardComponent key={Data[i].id}>{Data[i].course}</CardComponent>
+         <For data={Data}>
+            {(item, i) => {
+               return <CardComponent key={item.id}>{item.course}</CardComponent>
             }}
          </For>
       </div>
