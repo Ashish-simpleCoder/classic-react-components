@@ -43,6 +43,7 @@ $ yarn add simple-react-components
 -  [Then](#then)
 -  [Else](#else)
 -  [For](#for)
+-  [Switch](#switch)
 
 ## If
 
@@ -199,6 +200,44 @@ export default function YourComponent() {
                return <CardComponent key={item.id}>{item.course}</CardComponent>
             }}
          </For>
+      </div>
+   )
+}
+```
+
+## Switch
+
+| Prop     |   Type    | Required |  Default  | Description                                                             |
+| -------- | :-------: | :------: | :-------: | ----------------------------------------------------------------------- |
+| item     |    any    |    ❌    | undefined | Switch value                                                            |
+| children | ReactNode |    ✅    |     -     | Returns the children of matched case otherwise default Case's children. |
+
+### Example
+
+```tsx
+import { Switch } from 'simple-react-components'
+import CardComponent from './CardComponent'
+
+export default function YourComponent({ item }: { item: 'coding' | 'sleep' }) {
+   return (
+      <div>
+         <Switch item={item}>
+            {({ Case, Default }) => {
+               return (
+                  <>
+                     <Case value='coding'>
+                        <div data-testid='coding'>coing-case</div>
+                     </Case>
+                     <Case value='sleep'>
+                        <div data-testid='sleep'>sleep-case</div>
+                     </Case>
+                     <Default>
+                        <div data-testid='default'>this is default case</div>
+                     </Default>
+                  </>
+               )
+            }}
+         </Switch>
       </div>
    )
 }
