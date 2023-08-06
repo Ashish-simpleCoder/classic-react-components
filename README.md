@@ -1,16 +1,16 @@
 <p align="left">
-  <a href="https://badge.fury.io/js/simple-react-components">
-    <img src="https://badge.fury.io/js/simple-react-components.svg" alt="npm version">
+  <a href="https://badge.fury.io/js/classic-react-components">
+    <img src="https://badge.fury.io/js/classic-react-components.svg" alt="npm version">
   </a>
     <img src="https://img.shields.io/badge/Licence-MIT-success" alt="MIT license." />
-  <a href="https://github.com/Ashish-simplecoder/simple-react-components/actions/workflows/main.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/Ashish-simpleCoder/simple-react-components/main.yml?label=CI&logo=GitHub" alt="Jest is released under the MIT license." />
+  <a href="https://github.com/Ashish-simplecoder/classic-react-components/actions/workflows/main.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/Ashish-simpleCoder/classic-react-components/main.yml?label=CI&logo=GitHub" alt="Jest is released under the MIT license." />
   </a>
 </p>
 
-# 🚀 simple-react-components
+# 🚀 classic-react-components
 
-A simple React Library for **Utility** **Components** and **Hooks**.
+## A Simple React Library of `Utility Components`.
 
 ## Features
 
@@ -22,19 +22,19 @@ A simple React Library for **Utility** **Components** and **Hooks**.
 For npm users
 
 ```bash
-$ npm install simple-react-components
+$ npm install classic-react-components
 ```
 
 For pnpm users
 
 ```bash
-$ pnpm install simple-react-components
+$ pnpm install classic-react-components
 ```
 
 For yarn users
 
 ```bash
-$ yarn add simple-react-components
+$ yarn add classic-react-components
 ```
 
 ## Components
@@ -70,7 +70,7 @@ $ yarn add simple-react-components
 ### Example
 
 ```tsx
-import { If } from 'simple-react-components'
+import { If } from 'classic-react-components'
 
 export default function YourComponent() {
    return (
@@ -100,7 +100,7 @@ export default function YourComponent() {
 ### Usage with Suspense
 
 ```tsx
-import { If, Then, Else } from 'simple-react-components'
+import { If, Then, Else } from 'classic-react-components'
 import { lazy } from 'react'
 
 const SomeLazyComponent = lazy(() => import('./SomeLazyComponent'))
@@ -130,10 +130,15 @@ export default function YourComponent() {
 | -------- | :-------: | :------: | :-----: | --------------------------- |
 | children | ReactNode |    ❌    |  null   | Renders the passed children |
 
+### Working
+
+-  Renders the passed children.
+-  Used in conjunction with `If` commponent.
+
 ### Example
 
 ```tsx
-import { If, Then } from 'simple-react-components'
+import { If, Then } from 'classic-react-components'
 
 export default function YourComponent() {
    return (
@@ -154,10 +159,15 @@ export default function YourComponent() {
 | -------- | :-------: | :------: | :-----: | --------------------------- |
 | children | ReactNode |    ❌    |  null   | Renders the passed children |
 
+### Working
+
+-  Renders the passed children.
+-  Used in conjunction with `If` commponent.
+
 ### Example
 
 ```tsx
-import { If, Then, Else } from 'simple-react-components'
+import { If, Then, Else } from 'classic-react-components'
 
 export default function YourComponent() {
    return (
@@ -182,10 +192,15 @@ export default function YourComponent() {
 | data     |   Array   |    ❌    | undefined | Needed for mapping          |
 | children | ReactNode |    ❌    |   null    | Renders the passed children |
 
+### Working
+
+-  Replacement for Array.map().
+-  Used to iterate over an array of items and renders the jsx according to the passed children as function.
+
 ### Example
 
 ```tsx
-import { For } from 'simple-react-components'
+import { For } from 'classic-react-components'
 import CardComponent from './CardComponent'
 
 export default function YourComponent() {
@@ -212,10 +227,15 @@ export default function YourComponent() {
 | item     |    any    |    ❌    | undefined | Switch value                                                            |
 | children | ReactNode |    ✅    |     -     | Returns the children of matched case otherwise default Case's children. |
 
+### Working
+
+-  Renders the children of particular matched case for given `item(switch value)`.
+-  If none case is matched for given `item` then `Default` case will be rendered.
+
 ### Example
 
 ```tsx
-import { Switch } from 'simple-react-components'
+import { Switch } from 'classic-react-components'
 import CardComponent from './CardComponent'
 
 export default function YourComponent({ item }: { item: 'coding' | 'sleep' }) {
