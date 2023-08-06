@@ -27,8 +27,29 @@ describe('Switch', () => {
       )
    })
 
-   it('should render coding named div', () => {
-      let item = 'coding' as 'coding' | 'sleep'
+   it('should render nothing if item prop is not provided', () => {
+      render(
+         <Switch>
+            {({ Case, Default }) => {
+               return (
+                  <>
+                     <Case value='any'>
+                        <div>this is any case</div>
+                     </Case>
+                     <Default>
+                        <div>this is default case</div>
+                     </Default>
+                  </>
+               )
+            }}
+         </Switch>
+      )
+      expect(screen.queryByText(/this is any case/)).not.toBeInTheDocument()
+      expect(screen.queryByText(/this is default case/)).not.toBeInTheDocument()
+   })
+
+   it('should render sleep Case', () => {
+      let item = 'sleep' as 'coding' | 'sleep'
 
       render(
          <Switch item={item}>
@@ -49,8 +70,8 @@ describe('Switch', () => {
             }}
          </Switch>
       )
-      expect(screen.queryByTestId('coding')).toBeInTheDocument()
-      expect(screen.queryByTestId('sleep')).not.toBeInTheDocument()
+      expect(screen.queryByTestId('coding')).not.toBeInTheDocument()
+      expect(screen.queryByTestId('sleep')).toBeInTheDocument()
       expect(screen.queryByTestId('default')).not.toBeInTheDocument()
    })
 
@@ -77,7 +98,30 @@ describe('Switch', () => {
       expect(screen.queryByTestId('sleep')).not.toBeInTheDocument()
    })
 
-   it('should render default case', () => {
+   it('should work without passing the default case-2, if none case is matched', () => {
+      let item = 'awesome' as 'awesome' | 'coding' | 'sleep'
+
+      render(
+         <Switch item={item}>
+            {({ Case }) => {
+               return (
+                  <>
+                     <Case value='coding'>
+                        <div data-testid='coding'>coing-case</div>
+                     </Case>
+                     <Case value='sleep'>
+                        <div data-testid='sleep'>sleep-case</div>
+                     </Case>
+                  </>
+               )
+            }}
+         </Switch>
+      )
+      expect(screen.queryByTestId('coding')).not.toBeInTheDocument()
+      expect(screen.queryByTestId('sleep')).not.toBeInTheDocument()
+   })
+
+   it('should render Default case', () => {
       let item = 'awesome' as 'coding' | 'sleep' | 'awesome'
 
       render(
@@ -104,7 +148,7 @@ describe('Switch', () => {
       expect(screen.queryByTestId('default')).toBeInTheDocument()
    })
 
-   it('should console warning if used HtmlElement inside Switch', () => {
+   it('should console warning for multiple Default case', () => {
       let item = 'awesome' as 'coding' | 'sleep' | 'awesome'
 
       const consoleFn = vi.fn(() => {})
@@ -115,7 +159,6 @@ describe('Switch', () => {
             {({ Case, Default }) => {
                return (
                   <>
-                     <div>this is custom element</div>
                      <Case value='coding'>
                         <div data-testid='coding'>coing-case</div>
                      </Case>
@@ -125,6 +168,9 @@ describe('Switch', () => {
                      <Default>
                         <div data-testid='default'>this is default</div>
                      </Default>
+                     <Default>
+                        <div data-testid='default-2'>this is default-2</div>
+                     </Default>
                   </>
                )
             }}
@@ -133,25 +179,21 @@ describe('Switch', () => {
       expect(screen.queryByTestId('coding')).not.toBeInTheDocument()
       expect(screen.queryByTestId('sleep')).not.toBeInTheDocument()
       expect(screen.queryByTestId('default')).toBeInTheDocument()
+      expect(screen.queryByTestId('default-2')).not.toBeInTheDocument()
 
       expect(consoleFn).toBeCalledTimes(1)
-      expect(consoleFn).toBeCalledWith(
-         'Only Default and Case component are allowed. Skipping the rendering for HtmlElement',
-         'div'
-      )
+      expect(consoleFn).toBeCalledWith('You can not use multiple Default-Case inside Switch')
 
       expect(consoleLogMock).toBeCalledTimes(1)
-      expect(consoleLogMock).toBeCalledWith(
-         'Only Default and Case component are allowed. Skipping the rendering for HtmlElement',
-         'div'
-      )
+      expect(consoleLogMock).toBeCalledWith('You can not use multiple Default-Case inside Switch')
    })
 
-   it('should console warning if used component is not "Default" or "Case" inside Swtich', () => {
+   it('should console warning if used HtmlElement or any Component inside Switch', () => {
       let item = 'awesome' as 'coding' | 'sleep' | 'awesome'
 
       const consoleFn = vi.fn(() => {})
       const consoleLogMock = vi.spyOn(console, 'warn').mockImplementation(consoleFn)
+
       const Comp = () => <div>this is custom component</div>
 
       render(
@@ -159,6 +201,7 @@ describe('Switch', () => {
             {({ Case, Default }) => {
                return (
                   <>
+                     <div>this is custom element</div>
                      <Comp />
                      <Case value='coding'>
                         <div data-testid='coding'>coing-case</div>
@@ -178,19 +221,11 @@ describe('Switch', () => {
       expect(screen.queryByTestId('sleep')).not.toBeInTheDocument()
       expect(screen.queryByTestId('default')).toBeInTheDocument()
 
-      expect(consoleFn).toBeCalledTimes(1)
-      expect(consoleFn).toBeCalledWith(
-         'Only Default and Case component are allowed. Skipping the rendering for',
-         'Comp',
-         'component'
-      )
+      expect(consoleFn).toBeCalledTimes(2)
+      expect(consoleFn).toBeCalledWith('You must use Default or Case component inside Switch')
 
-      expect(consoleLogMock).toBeCalledTimes(1)
-      expect(consoleLogMock).toBeCalledWith(
-         'Only Default and Case component are allowed. Skipping the rendering for',
-         'Comp',
-         'component'
-      )
+      expect(consoleLogMock).toBeCalledTimes(2)
+      expect(consoleLogMock).toBeCalledWith('You must use Default or Case component inside Switch')
    })
 
    it('should not render children of Case, if value != item', () => {
@@ -219,34 +254,57 @@ describe('Switch', () => {
       expect(screen.queryByTestId('children')).not.toBeInTheDocument()
    })
 
-   it('should validate normal js function used inside Switch as cases.', () => {
-      let item = 'awesome' as 'coding' | 'sleep' | 'awesome'
+   describe('single children', () => {
+      it('should be able to handle one children', () => {
+         const item = 'test' as 'test' | 'vitest'
+         const { rerender } = render(
+            <Switch item={item}>
+               {({ Case, Default }) => {
+                  return (
+                     <>
+                        <Case value='test'>
+                           <div>this is test case</div>
+                        </Case>
+                     </>
+                  )
+               }}
+            </Switch>
+         )
+         expect(screen.queryByText(/this is test case/)).toBeInTheDocument()
 
-      const consoleFn = vi.fn(() => {})
-      const consoleLogMock = vi.spyOn(console, 'warn').mockImplementation(consoleFn)
+         //case-handling if one case and value != item
+         rerender(
+            <Switch item={item}>
+               {({ Case, Default }) => {
+                  return (
+                     <>
+                        {/* @ts-ignore */}
+                        <Case value='temp'>
+                           <div>this is test case</div>
+                        </Case>
+                     </>
+                  )
+               }}
+            </Switch>
+         )
+      })
+      it('should be able to handle one children-2', () => {
+         const item = 'test' as 'test' | 'vitest'
 
-      const fn = vi.fn(() => {})
-
-      render(
-         <Switch item={item}>
-            {({ Case }) => {
-               return (
-                  <>
-                     <Case value='awesome'>
-                        <div>item</div>
-                     </Case>
-                     {fn()}
-                  </>
-               )
-            }}
-         </Switch>
-      )
-
-      expect(consoleFn).toBeCalledTimes(1)
-      expect(fn).toBeCalledTimes(1)
-      expect(consoleFn).toBeCalledWith('You can"t call function, You must use Default or Case component')
-
-      expect(consoleLogMock).toBeCalledTimes(1)
-      expect(consoleLogMock).toBeCalledWith('You can"t call function, You must use Default or Case component')
+         render(
+            <Switch item={item}>
+               {({ Case, Default }) => {
+                  return (
+                     <>
+                        <Default>
+                           <div>this is default case</div>
+                        </Default>
+                     </>
+                  )
+               }}
+            </Switch>
+         )
+         expect(screen.queryByText(/this is default case/)).toBeInTheDocument()
+      })
    })
 })

@@ -9,10 +9,12 @@ type SwitchProps<T> = {
       Case: ({ children, value }: { children?: ReactNode; value: T }) => JSX.Element
       Default: ({ children }: { children: ReactNode }) => JSX.Element | null
    }) => JSX.Element
-   item: T
+   item?: T
 }
 
 export default function Switch<T>({ children, item }: SwitchProps<T>) {
+   if (!item) return null
+
    const itemRef = useRef(item)
    itemRef.current = item
 
@@ -36,8 +38,29 @@ export default function Switch<T>({ children, item }: SwitchProps<T>) {
       index: 0,
    }
 
-   if (props?.children?.length > 0) {
+   // handling case for when only one children is passed
+   if (
+      'children' in props &&
+      typeof props.children == 'object' &&
+      !Array.isArray(props.children) &&
+      typeof props.children?.type == 'function'
+   ) {
+      if (props.children.type?.name == 'Case') {
+         if (props.children.props.value == item) {
+            new_child = props.children
+         }
+      }
+      if (props.children.type?.name == 'Default') {
+         new_child = props.children
+      }
+      return new_child
+   }
+
+   if ('children' in props && Array.isArray(props.children) && props.children.length > 0) {
       Children.forEach(props.children, (child: JSX.Element, i) => {
+         if (!child || (child?.type?.name != 'Default' && child?.type?.name != 'Case')) {
+            console.warn('You must use Default or Case component inside Switch')
+         }
          // check if it is <Case> case
          if (child?.type?.name == 'Case') {
             // if passed <item> prop is equal to the <Case> component's <value> prop, then assign it to <new_child> state
@@ -48,34 +71,18 @@ export default function Switch<T>({ children, item }: SwitchProps<T>) {
          }
          // check if <Default> case is present or not
          if (child?.type?.name == 'Default') {
+            if (defaultCase.present) {
+               console.warn('You can not use multiple Default-Case inside Switch')
+               return
+            }
             defaultCase.present = true
             defaultCase.index = i
          }
-
-         if (!child) {
-            console.warn('You can"t call function, You must use Default or Case component')
-            return
-         }
-
-         if (typeof child.type == 'function') {
-            if (child.type.name == 'Default' || child.type.name == 'Case') return
-            console.warn(
-               'Only Default and Case component are allowed. Skipping the rendering for',
-               child.type.name,
-               'component'
-            )
-         } else {
-            console.warn(
-               'Only Default and Case component are allowed. Skipping the rendering for HtmlElement',
-               child.type
-            )
-         }
       })
-   }
-
-   // if no-other cases match and <Default> case is present, then assign the <Default> to the <new_child> state
-   if (!new_child && defaultCase.present) {
-      new_child = props?.children[defaultCase.index]
+      // if no-other cases match and <Default> case is present, then assign the <Default> to the <new_child> state
+      if (!new_child && defaultCase.present) {
+         new_child = props?.children[defaultCase.index]
+      }
    }
 
    return new_child
