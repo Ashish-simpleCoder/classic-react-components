@@ -246,13 +246,13 @@ export default function YourComponent({ item }: { item: 'coding' | 'sleep' }) {
                return (
                   <>
                      <Case value='coding'>
-                        <div data-testid='coding'>coing-case</div>
+                        <div>coing-case</div>
                      </Case>
                      <Case value='sleep'>
-                        <div data-testid='sleep'>sleep-case</div>
+                        <div>sleep-case</div>
                      </Case>
                      <Default>
-                        <div data-testid='default'>this is default case</div>
+                        <div>this is default case</div>
                      </Default>
                   </>
                )
