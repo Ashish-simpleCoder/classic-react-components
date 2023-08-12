@@ -12,6 +12,40 @@ type SwitchProps<T> = {
    item?: T
 }
 
+/**
+ * @description
+ * A Utility component which renders the children of matched case just like switch-case statement in javascript.
+ *
+ * @see Docs https://github.com/Ashish-simpleCoder/classic-react-components#switch
+ *
+ * @example
+   import { Switch } from 'classic-react-components'
+   import CardComponent from './CardComponent'
+
+   export default function YourComponent({ item }: { item: 'coding' | 'sleep' }) {
+      return (
+         <div>
+            <Switch item={item}>
+               {({ Case, Default }) => {
+                  return (
+                     <>
+                        <Case value='coding'>
+                           <div>coing-case</div>
+                        </Case>
+                        <Case value='sleep'>
+                           <div>sleep-case</div>
+                        </Case>
+                        <Default>
+                           <div>this is default case</div>
+                        </Default>
+                     </>
+                  )
+               }}
+            </Switch>
+         </div>
+      )
+   }
+*/
 export default function Switch<T>({ children, item }: SwitchProps<T>) {
    if (!item) return null
 

@@ -1,6 +1,28 @@
 import type { ReactNode } from 'react'
 import React, { Suspense } from 'react'
 
+/**
+ * @description
+ * A Utility component which takes a condition prop and children.
+ *
+ * If condition is truthy then first children will be rendered.
+ *
+ * @see Docs https://github.com/Ashish-simpleCoder/classic-react-components#if
+ *
+ * @example
+   import { If } from 'classic-react-components'
+   import Modal from "./Modal"
+   export default function YourComponent() {
+      const [show, setShow] = useState(false)
+      return (
+         <div>
+            <If codition={true}>
+               <Modal />
+            </If>
+            <button onClick={() => setShow(val => !val)}>show modal</button>
+      </div>
+   )}
+*/
 export default function If({
    condition = false,
    children = null,
