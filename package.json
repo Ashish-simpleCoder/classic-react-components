@@ -1,5 +1,5 @@
 {
-  "name": "simple-react-components",
+  "name": "classic-react-components",
   "version": "0.0.0",
   "description": "A great collection of React utility components",
   "keywords": [
@@ -7,10 +7,15 @@
     "components",
     "utility components"
   ],
-  "publishConfig": {
-    "access": "public"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ashish-simpleCoder/classic-react-components.git"
   },
-  "homepage": "https://github.com/Ashish-simpleCoder/simple-react-components",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "homepage": "https://github.com/Ashish-simpleCoder/classic-react-components",
   "author": "Ashish-simpleCoder",
   "license": "MIT",
   "private": false,
