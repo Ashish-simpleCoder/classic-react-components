@@ -27,26 +27,26 @@ describe('Switch', () => {
       )
    })
 
-   it('should render nothing if item prop is not provided', () => {
-      render(
-         <Switch>
-            {({ Case, Default }) => {
-               return (
-                  <>
-                     <Case value='any'>
-                        <div>this is any case</div>
-                     </Case>
-                     <Default>
-                        <div>this is default case</div>
-                     </Default>
-                  </>
-               )
-            }}
-         </Switch>
-      )
-      expect(screen.queryByText(/this is any case/)).not.toBeInTheDocument()
-      expect(screen.queryByText(/this is default case/)).not.toBeInTheDocument()
-   })
+   // it('should render nothing if item prop is not provided', () => {
+   //    render(
+   //       <Switch>
+   //          {({ Case, Default }) => {
+   //             return (
+   //                <>
+   //                   <Case value='any'>
+   //                      <div>this is any case</div>
+   //                   </Case>
+   //                   <Default>
+   //                      <div>this is default case</div>
+   //                   </Default>
+   //                </>
+   //             )
+   //          }}
+   //       </Switch>
+   //    )
+   //    expect(screen.queryByText(/this is any case/)).not.toBeInTheDocument()
+   //    expect(screen.queryByText(/this is default case/)).not.toBeInTheDocument()
+   // })
 
    it('should render sleep Case', () => {
       let item = 'sleep' as 'coding' | 'sleep'

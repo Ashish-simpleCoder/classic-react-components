@@ -47,8 +47,6 @@ type SwitchProps<T> = {
    }
 */
 export default function Switch<T>({ children, item }: SwitchProps<T>) {
-   if (!item) return null
-
    const itemRef = useRef(item)
    itemRef.current = item
 
@@ -80,7 +78,7 @@ export default function Switch<T>({ children, item }: SwitchProps<T>) {
       typeof props.children?.type == 'function'
    ) {
       if (props.children.type?.name == 'Case') {
-         if (props.children.props.value == item) {
+         if (props.children.props.value === item) {
             new_child = props.children
          }
       }
@@ -98,7 +96,7 @@ export default function Switch<T>({ children, item }: SwitchProps<T>) {
          // check if it is <Case> case
          if (child?.type?.name == 'Case') {
             // if passed <item> prop is equal to the <Case> component's <value> prop, then assign it to <new_child> state
-            if (child?.props?.value == item) {
+            if (child?.props?.value === item) {
                new_child = child
                return
             }
