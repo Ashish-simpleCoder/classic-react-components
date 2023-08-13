@@ -37,7 +37,7 @@
     "test": "vitest --coverage"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16.8"
   },
   "dependencies": {
     "react": "^18.2.0"
