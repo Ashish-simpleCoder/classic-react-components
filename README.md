@@ -1,7 +1,7 @@
 > **Note** This library is still in progress.
 
 <p align="left">
-  <a href="https://badge.fury.io/js/classic-react-components">
+  <a href="https://badge.fury.io/Ashish-simpleCoder/classic-react-components">
     <img src="https://badge.fury.io/js/classic-react-components.svg" alt="npm version">
   </a>
     <img src="https://img.shields.io/badge/Licence-MIT-success" alt="MIT license." />
