@@ -7,5 +7,3 @@ scripts
 example
 .DS_STORE
 ./src/hooks
-.github/workflows/size.yml
-.github/workflows/publish.yml
