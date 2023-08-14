@@ -5,7 +5,7 @@ import React, { Suspense } from 'react'
  * @description
  * A Utility component which takes a condition prop and children.
  *
- * If condition is truthy then first children will be rendered.
+ * If condition evaluates to true then first children will be rendered.
  *
  * @see Docs https://github.com/Ashish-simpleCoder/classic-react-components#if
  *

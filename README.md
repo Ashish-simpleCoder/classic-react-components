@@ -19,6 +19,7 @@
 -  Comes with treeshaking
 -  Typescript support
 -  Small bundle size
+-  Tests written in Vitest
 
 ## Installation
 
@@ -50,25 +51,26 @@ $ yarn add classic-react-components
 
 ## If
 
-| Prop      |   Type    | Required | Default | Description                                                                                   |
-| --------- | :-------: | :------: | :-----: | --------------------------------------------------------------------------------------------- |
-| condition |    any    |    ❌    |  false  | Based on evaluation of the condition flag the component will return null or children          |
-| children  | ReactNode |    ❌    |  null   | To render the children                                                                        |
-| suspense  |  boolean  |    ❌    |  false  | To lazy load the component or not                                                             |
-| fallback  | ReactNode |    ❌    |  null   | Fallback needed to show untill the component is loaded fully. Needed for suspensed components |
+| Prop      |   Type    | Required | Default Value | Description                                                                                   |
+| --------- | :-------: | :------: | :-----------: | --------------------------------------------------------------------------------------------- |
+| condition |    any    |    ❌    |     false     | Based on evaluation of the condition flag the component will return null or children          |
+| children  | ReactNode |    ❌    |     null      | To render the children                                                                        |
+| suspense  |  boolean  |    ❌    |     false     | To lazy load the component or not                                                             |
+| fallback  | ReactNode |    ❌    |     null      | Fallback needed to show untill the component is loaded fully. Needed for suspensed components |
 
 ### Working
 
--  Based the condition the children are rendered. If the condition is true then the childeren will render otherwise it will return null.
+-  Based on the condition the children are rendered.
+-  If the condition is true then the childeren will render otherwise it will return null.
 
 -  For one children
 
-   -  If condition is true then children will render.
+   -  If condition is true then children will be rendered.
    -  If condition is false then null gets returned.
 
 -  For multiple children
-   -  If conditin is true then the first children will render
-   -  Otherwise the all of the children will be renderd excluding the first children.
+   -  If conndition is true then the first children will rendered.
+   -  Otherwise the all of the children will be rendered excluding the first children.
 
 ### Example
 
@@ -106,17 +108,17 @@ export default function YourComponent() {
 import { If, Then, Else } from 'classic-react-components'
 import { lazy } from 'react'
 
-const SomeLazyComponent = lazy(() => import('./SomeLazyComponent'))
+const YourLazyComponent = lazy(() => import('./YourLazyComponent'))
 
 export default function YourComponent() {
    return (
       <div>
-         {/* Passing two children, condition and suspense prop */}
+         {/* Passing two children, condition and suspense props */}
          <If codition={false} suspense>
-            {/* this component code file will only download when the condition will be true.
-             In this case, codition is falsy then it will not be downloaded. */}
+            {/* This component will only download when the condition evaluates to true.
+             Here condition is falsy, it will not be downloaded. */}
             <Then>
-               <SomeLazyComponent />
+               <YourLazyComponent />
             </Then>
             <Else>
                <h2>this is will render</h2>
@@ -129,14 +131,14 @@ export default function YourComponent() {
 
 ## Then
 
-| Prop     |   Type    | Required | Default | Description                 |
-| -------- | :-------: | :------: | :-----: | --------------------------- |
-| children | ReactNode |    ❌    |  null   | Renders the passed children |
+| Prop     |   Type    | Required | Default Value | Description                 |
+| -------- | :-------: | :------: | :-----------: | --------------------------- |
+| children | ReactNode |    ❌    |     null      | Renders the passed children |
 
 ### Working
 
--  Renders the passed children.
--  Used in conjunction with `If` commponent.
+-  It should be used in-conjunction with `If` commponent.
+-  It renders the passed children.
 
 ### Example
 
@@ -158,14 +160,14 @@ export default function YourComponent() {
 
 ## Else
 
-| Prop     |   Type    | Required | Default | Description                 |
-| -------- | :-------: | :------: | :-----: | --------------------------- |
-| children | ReactNode |    ❌    |  null   | Renders the passed children |
+| Prop     |   Type    | Required | Default Value | Description                 |
+| -------- | :-------: | :------: | :-----------: | --------------------------- |
+| children | ReactNode |    ❌    |     null      | Renders the passed children |
 
 ### Working
 
--  Renders the passed children.
--  Used in conjunction with `If` commponent.
+-  It should be used in-conjunction with `If` commponent.
+-  It renders the passed children.
 
 ### Example
 
@@ -190,15 +192,15 @@ export default function YourComponent() {
 
 ## For
 
-| Prop     |   Type    | Required |  Default  | Description                 |
-| -------- | :-------: | :------: | :-------: | --------------------------- |
-| data     |   Array   |    ❌    | undefined | Needed for mapping          |
-| children | ReactNode |    ❌    |   null    | Renders the passed children |
+| Prop     |   Type    | Required | Default Value | Description                                    |
+| -------- | :-------: | :------: | :-----------: | ---------------------------------------------- |
+| data     |   Array   |    ❌    |   undefined   | Needed for mapping                             |
+| children | ReactNode |    ❌    |     null      | Renders the `JSX` returned from child function |
 
 ### Working
 
 -  Replacement for Array.map().
--  Used to iterate over an array of items and renders the jsx according to the passed children as function.
+-  Used to iterate over an array of items and renders the `JSX` based on the provided child function.
 
 ### Example
 
@@ -214,7 +216,7 @@ export default function YourComponent() {
    return (
       <div>
          <For data={Data}>
-            {(item, i) => {
+            {(item, index) => {
                return <CardComponent key={item.id}>{item.course}</CardComponent>
             }}
          </For>
@@ -225,15 +227,17 @@ export default function YourComponent() {
 
 ## Switch
 
-| Prop     |   Type    | Required |  Default  | Description                                                             |
-| -------- | :-------: | :------: | :-------: | ----------------------------------------------------------------------- |
-| item     |    any    |    ❌    | undefined | Switch value                                                            |
-| children | ReactNode |    ✅    |     -     | Returns the children of matched case otherwise default Case's children. |
+| Prop     |   Type    | Required | Default Value | Description                                                      |
+| -------- | :-------: | :------: | :-----------: | ---------------------------------------------------------------- |
+| item     |    any    |    ❌    |   undefined   | The value of Switch                                              |
+| children | ReactNode |    ✅    |       -       | Renders the children of matched case if found, else default case |
 
 ### Working
 
--  Renders the children of particular matched case for given `item(switch value)`.
--  If none case is matched for given `item` then `Default` case will be rendered.
+-  Renders the children of particular matched case for given prop `item(switch value)`.
+-  If no case matches for given prop `item`, the `Default` case will be rendered.
+
+> **Note:** The order of Default Case does not matter.
 
 ### Example
 

@@ -3,9 +3,9 @@ import React from 'react'
 
 /**
  * @description
- * A Utility component which takes children renders them out.
+ * A Utility component which takes children and renders them out.
  *
- * It is used inconjuction with ```If``` component.
+ * It is used in-conjuction with ```If``` component.
  *
  * @see Docs https://github.com/Ashish-simpleCoder/classic-react-components#else
  *
