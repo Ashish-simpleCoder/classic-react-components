@@ -18,6 +18,7 @@
 
 -  Comes with treeshaking
 -  Typescript support
+-  Small bundle size
 
 ## Installation
 
