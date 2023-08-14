@@ -51,12 +51,12 @@ $ yarn add classic-react-components
 
 ## If
 
-| Prop      |   Type    | Required | Default Value | Description                                                                                   |
-| --------- | :-------: | :------: | :-----------: | --------------------------------------------------------------------------------------------- |
-| condition |    any    |    ❌    |     false     | Based on evaluation of the condition flag the component will return null or children          |
-| children  | ReactNode |    ❌    |     null      | To render the children                                                                        |
-| suspense  |  boolean  |    ❌    |     false     | To lazy load the component or not                                                             |
-| fallback  | ReactNode |    ❌    |     null      | Fallback needed to show untill the component is loaded fully. Needed for suspensed components |
+| Prop      |   Type    | Required | Default Value | Description                                                                                  |
+| --------- | :-------: | :------: | :-----------: | -------------------------------------------------------------------------------------------- |
+| condition |    any    |    ❌    |     false     | Based on evaluation of the condition flag the component will return null or children         |
+| children  | ReactNode |    ❌    |     null      | To render the children                                                                       |
+| suspense  |  boolean  |    ❌    |     false     | Needed to show fallback until its children have finished loading                             |
+| fallback  | ReactNode |    ❌    |     null      | Fallback needed to show until the component is loaded fully. Needed for suspensed components |
 
 ### Working
 
