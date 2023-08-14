@@ -1,5 +1,4 @@
-**Note**
-This library is still in progress.
+> **Note** This library is still in progress.
 
 <p align="left">
   <a href="https://badge.fury.io/js/classic-react-components">
