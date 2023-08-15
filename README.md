@@ -5,6 +5,9 @@
     <img src="https://badge.fury.io/js/classic-react-components.svg" alt="npm version">
   </a>
     <img src="https://img.shields.io/badge/Licence-MIT-success" alt="MIT license." />
+  <a href="https://github.com/Ashish-simpleCoder/classic-react-components/actions/workflows/test.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/Ashish-simpleCoder/classic-react-components/test.yml?label=Test&logo=GitHub" alt="Test" />
+  </a>
   <a href="https://github.com/Ashish-simplecoder/classic-react-components/actions/workflows/main.yml">
     <img src="https://img.shields.io/github/actions/workflow/status/Ashish-simpleCoder/classic-react-components/main.yml?label=CI&logo=GitHub" alt="Jest is released under the MIT license." />
   </a>
