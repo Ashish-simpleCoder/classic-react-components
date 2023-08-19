@@ -1,5 +1,12 @@
+# 🚀 classic-react-components
+
+A Simple React Library of `Utility Components`.
+
+<br />
+
 > **Note** This library is still in progress.
 
+<br />
 <p align="left">
   <a href="https://badge.fury.io/Ashish-simpleCoder/classic-react-components">
     <img src="https://badge.fury.io/js/classic-react-components.svg" alt="npm version">
@@ -13,16 +20,11 @@
   </a>
 </p>
 
-# 🚀 classic-react-components
-
-## A Simple React Library of `Utility Components`.
-
 ## Features
 
 -  Comes with treeshaking
 -  Typescript support
 -  Small bundle size
--  Tests written in Vitest
 
 ## Installation
 
@@ -52,7 +54,7 @@ $ yarn add classic-react-components
 -  [For](#for)
 -  [Switch](#switch)
 
-## If
+### If
 
 | Prop      |   Type    | Required | Default Value | Description                                                                                  |
 | --------- | :-------: | :------: | :-----------: | -------------------------------------------------------------------------------------------- |
@@ -132,7 +134,7 @@ export default function YourComponent() {
 }
 ```
 
-## Then
+### Then
 
 | Prop     |   Type    | Required | Default Value | Description                 |
 | -------- | :-------: | :------: | :-----------: | --------------------------- |
@@ -161,7 +163,7 @@ export default function YourComponent() {
 }
 ```
 
-## Else
+### Else
 
 | Prop     |   Type    | Required | Default Value | Description                 |
 | -------- | :-------: | :------: | :-----------: | --------------------------- |
@@ -193,7 +195,7 @@ export default function YourComponent() {
 }
 ```
 
-## For
+### For
 
 | Prop     |   Type    | Required | Default Value | Description                                    |
 | -------- | :-------: | :------: | :-----------: | ---------------------------------------------- |
@@ -228,7 +230,7 @@ export default function YourComponent() {
 }
 ```
 
-## Switch
+### Switch
 
 | Prop     |   Type    | Required | Default Value | Description                                                      |
 | -------- | :-------: | :------: | :-----------: | ---------------------------------------------------------------- |
