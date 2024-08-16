@@ -1,10 +1,8 @@
 # 🚀 classic-react-components
 
-A Simple React Library of `Utility Components`.
+- A Simple React Library of `Utility Components`.
+- Write jsx in `maintainable` and `readable` way, and fun too.
 
-<br />
-
-> **Note** This library is still in progress.
 
 <br />
 <p align="left">
@@ -22,9 +20,10 @@ A Simple React Library of `Utility Components`.
 
 ## Features
 
--  Comes with treeshaking
--  Typescript support
--  Small bundle size
+- Comes with treeshaking
+- Typescript support
+- Small bundle size
+- Minimal and Easy to use
 
 ## Installation
 
