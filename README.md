@@ -5,7 +5,6 @@
 Rethinking the way you write JSX. 
 
 
-
 <br />
 <p align="left">
   <a href="https://badge.fury.io/Ashish-simpleCoder/classic-react-components">
@@ -81,8 +80,15 @@ $ yarn add classic-react-components
    -  If condition is false then null gets returned.
 
 -  For multiple children
-   -  If condition is true then the first children will rendered.
+   -  If condition is true then the first child will be rendered.
    -  Otherwise the all of the children will be rendered excluding the first children.
+------
+### Before (Conditional JSX with Ternary operator)
+![with-ternary](https://github.com/user-attachments/assets/93ed579a-a1e1-41bc-8351-78a635e3e1f3)
+
+### After (Conditional JSX with If-Else component)
+![with-if-else](https://github.com/user-attachments/assets/ac2518f2-caa6-4b5d-98dd-fcf1e58a1c8b)
+-------
 
 ### Example
 
