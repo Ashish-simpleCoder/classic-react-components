@@ -1,7 +1,9 @@
 # 🚀 classic-react-components
 
-- A Simple React Library of `Utility Components`.
-- Write jsx in `maintainable` and `readable` way, and fun too.
+## Intro
+
+Rethinking the way you write JSX. 
+
 
 
 <br />
@@ -20,10 +22,11 @@
 
 ## Features
 
-- Comes with treeshaking
-- Typescript support
+- Built in Typescript
+- Supports Treeshaking
 - Small bundle size
 - Minimal and Easy to use
+- Open Source
 
 ## Installation
 
@@ -37,6 +40,11 @@ For pnpm users
 
 ```bash
 $ pnpm install classic-react-components
+```
+For buns users
+
+```bash
+$ bun install classic-react-components
 ```
 
 For yarn users
@@ -57,15 +65,15 @@ $ yarn add classic-react-components
 
 | Prop      |   Type    | Required | Default Value | Description                                                                                  |
 | --------- | :-------: | :------: | :-----------: | -------------------------------------------------------------------------------------------- |
-| condition |    any    |    ❌    |     false     | Based on evaluation of the condition flag the component will return null or children         |
-| children  | ReactNode |    ❌    |     null      | To render the children                                                                       |
-| suspense  |  boolean  |    ❌    |     false     | Needed to show fallback until its children have finished loading                             |
-| fallback  | ReactNode |    ❌    |     null      | Fallback needed to show until the component is loaded fully. Needed for suspensed components |
+| condition |    any    |    ❌    |     false     | Based on evaluation of the condition flag the component will return either null or children         |
+| children  | ReactNode |    ❌    |     null      | To render the children.                                                                     |
+| suspense  |  boolean  |    ❌    |     false     | Used for rendering lazily loaded components                             |
+| fallback  | ReactNode |    ❌    |     null      | Used for showing the fallback until the suspensed children have been loaded.  |
 
 ### Working
 
--  Based on the condition the children are rendered.
--  If the condition is true then the childeren will render otherwise it will return null.
+-  Based on evaulation of the condition flag the children are rendered.
+-  If the condition is true then it will render the children otherwise null.
 
 -  For one children
 
@@ -73,7 +81,7 @@ $ yarn add classic-react-components
    -  If condition is false then null gets returned.
 
 -  For multiple children
-   -  If conndition is true then the first children will rendered.
+   -  If condition is true then the first children will rendered.
    -  Otherwise the all of the children will be rendered excluding the first children.
 
 ### Example
