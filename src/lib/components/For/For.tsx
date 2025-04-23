@@ -26,7 +26,7 @@ import React from 'react'
       )
    }
 */
-export default function For<T extends any[]>({
+export default function For<T extends readonly any[]>({
    data,
    children = null,
 }: {
