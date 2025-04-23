@@ -34,9 +34,13 @@ export default function For<T extends any[]>({
    data?: T
 }) {
    if (!data || children === null) return <></>
+   
+   if(!Array.isArray(data)) {
+      throw new Error(`Type of data prop must be an array, but got ${typeof data} type.`)
+   }
 
    if (typeof children != 'function') {
-      throw new Error('Children type must be a function.')
+      throw new Error(`Type of children prop must be a function but got ${typeof children} type.`)
    }
 
    let arr: JSX.Element[] = []
