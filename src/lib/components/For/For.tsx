@@ -34,8 +34,8 @@ export default function For<T extends any[]>({
    data?: T
 }) {
    if (!data || children === null) return <></>
-   
-   if(!Array.isArray(data)) {
+
+   if (!Array.isArray(data)) {
       throw new Error(`Type of data prop must be an array, but got ${typeof data} type.`)
    }
 
@@ -43,10 +43,9 @@ export default function For<T extends any[]>({
       throw new Error(`Type of children prop must be a function but got ${typeof children} type.`)
    }
 
-   let arr: JSX.Element[] = []
-   for (let i = 0; i < Number(data.length); i++) {
-      const element = children(data[i], i)
-      arr.push(element)
+   const arr: JSX.Element[] = new Array(data.length)
+   for (let i = 0; i < data.length; i++) {
+      arr.push(children(data[i], i))
    }
 
    return <>{arr}</>
