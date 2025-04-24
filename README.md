@@ -218,6 +218,14 @@ export default function YourComponent() {
 -  Replacement of `Array.map` method.
 -  Used to iterate over an array of items and renders the `JSX` based on the provided child function.
 
+------
+### Before (Looping over data with Array.map method)
+![for-without](https://github.com/user-attachments/assets/2b8a944b-df94-42af-832b-2a6358b9cc9d)
+
+### After (Looping over data with For component)
+![for-with](https://github.com/user-attachments/assets/c93bf0ea-becf-489e-a1e1-86abc2ea8cd4)
+-------
+
 ### Examples
 
 ```tsx
@@ -254,6 +262,14 @@ export default function YourComponent() {
 -  If none of cases are matched for given prop `item`, the `Default` case will be rendered.
 
 > **Note:** The order of Default Case does not matter.
+
+------
+### Before (Switching component with different cases with Object switch logic)
+![switch-without](https://github.com/user-attachments/assets/ba190cc5-f8d7-466e-96a1-d60e658e2401)
+
+### After (Switching component with different cases with Switch component)
+![switch-with](https://github.com/user-attachments/assets/68a72560-5c92-4a71-9e30-f1b3a294d9c3)
+-------
 
 ### Examples
 
