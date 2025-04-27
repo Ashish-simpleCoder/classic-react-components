@@ -220,10 +220,10 @@ export default function YourComponent() {
 
 ------
 ### Before (Looping over data with Array.map method)
-![for-without](https://github.com/user-attachments/assets/2b8a944b-df94-42af-832b-2a6358b9cc9d)
+![for-without](https://github.com/user-attachments/assets/5144092c-f65a-4e78-8c40-ecc51d6b4ff0)
 
 ### After (Looping over data with For component)
-![for-with](https://github.com/user-attachments/assets/c93bf0ea-becf-489e-a1e1-86abc2ea8cd4)
+![for-with](https://github.com/user-attachments/assets/21e1fcf6-5493-4c5e-a2d4-97282ca5470c)
 -------
 
 ### Examples
