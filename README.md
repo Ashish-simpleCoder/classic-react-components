@@ -80,14 +80,6 @@ $ yarn add classic-react-components
    -  If condition is true then the first child will be rendered.
    -  Otherwise the all of the children will be rendered excluding the first child.
 
-------
-### Before (Conditional JSX with Ternary operator)
-![with-ternary](https://github.com/user-attachments/assets/93ed579a-a1e1-41bc-8351-78a635e3e1f3)
-
-### After (Conditional JSX with If-Else component)
-![with-if-else](https://github.com/user-attachments/assets/ac2518f2-caa6-4b5d-98dd-fcf1e58a1c8b)
--------
-
 ### Examples
 
 ```tsx
@@ -143,6 +135,34 @@ export default function YourComponent() {
       </div>
    )
 }
+```
+
+
+### Replacing ternary and short-circuit
+
+```tsx
+   const show = true // some state, which will be toggled to true|false
+
+   // ❌ ternary operator
+  { show ? <h1>main content</h1>:<h1>fallback</h1> }
+   // ❌ short circuit 
+  { show && <h1>main content</h1> }
+
+
+   // ✅ replace ternary
+   <If>
+      <Then>
+         <h1>main content</h1>
+      </Then>
+      <Else>
+         <h1>fallback</h1>
+      </Else>
+   </If>
+
+   // ✅ replace short circuit
+   <If>
+      <h1>main content</h1>
+   </If>
 ```
 
 ## Then
@@ -215,16 +235,9 @@ export default function YourComponent() {
 
 ### Working
 
--  Replacement of `Array.map` method.
+-  Replacement of `Array.map` method used for rendering the list in jsx.
 -  Used to iterate over an array of items and renders the `JSX` based on the provided child function.
 
-------
-### Before (Looping over data with Array.map method)
-![for-without](https://github.com/user-attachments/assets/5144092c-f65a-4e78-8c40-ecc51d6b4ff0)
-
-### After (Looping over data with For component)
-![for-with](https://github.com/user-attachments/assets/21e1fcf6-5493-4c5e-a2d4-97282ca5470c)
--------
 
 ### Examples
 
@@ -249,6 +262,26 @@ export default function YourComponent() {
 }
 ```
 
+### Replacing Array.map used in jsx for rendering the list
+
+```tsx
+   const data = [1,2,3]   // some async data
+
+   // ❌ using Array.map to render jsx
+   {data.length > 0 && data.map((item, index) => {
+      return <CardComponent key={item.id}>{item.course}</CardComponent>
+   })}
+
+
+   // ✅ using For component to render jsx without needing to check if data is defined or not
+   <For data={data}>
+      {(item, index) => {
+         return <CardComponent key={item.id}>{item.course}</CardComponent>
+      }}
+   </For>
+```
+
+
 ## Switch
 
 | Prop     |   Type    | Required | Default Value | Description                                                      |
@@ -262,14 +295,6 @@ export default function YourComponent() {
 -  If none of cases are matched for given prop `item`, the `Default` case will be rendered.
 
 > **Note:** The order of Default Case does not matter.
-
-------
-### Before (Switching component with different cases with Object switch logic)
-![switch-without](https://github.com/user-attachments/assets/ba190cc5-f8d7-466e-96a1-d60e658e2401)
-
-### After (Switching component with different cases with Switch component)
-![switch-with](https://github.com/user-attachments/assets/68a72560-5c92-4a71-9e30-f1b3a294d9c3)
--------
 
 ### Examples
 
@@ -300,4 +325,47 @@ export default function YourComponent({ item }: { item: 'coding' | 'sleep' }) {
       </div>
    )
 }
+
+```
+### Replacing object switching for rendering the jsx
+```tsx
+   const item: "sleep"|"coding" = "sleep"
+
+   // ❌ using old object switching
+   // first define seperate object and match the case manually and can not define fallback case here at all
+   const itemSwitches = {
+      "coding":<div>coing-case</div>,
+      "sleep":<div>sleep-case</div>,
+   }
+   const MatchedCase = itemSwitches(item) ?? <div>fallback</div> // manually giving fallback
+
+   // render in the jsx
+   {MatchedCase}
+
+
+
+   // ✅ using Switch component 
+
+   // much better, we do not have to lookup for the switch logic and jumping between states and jsx unlike with Object switching
+
+   // it support default case if no case is matched. we can not do it in one plase with object switching
+
+   // it is typesafe
+   <Switch item={item}>
+      {({ Case, Default }) => {
+         return (
+            <>
+               <Case value='coding'>
+                  <div>coing-case</div>
+               </Case>
+               <Case value='sleep'>
+                  <div>sleep-case</div>
+               </Case>
+               <Default>
+                  <div>this is default case</div>
+               </Default>
+            </>
+         )
+      }}
+   </Switch> 
 ```
