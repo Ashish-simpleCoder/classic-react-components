@@ -33,7 +33,7 @@
     "type-check": "tsc",
     "size": "size-limit",
     "cs": "pnpm changeset",
-    "format-code": "prettier --write ./src",
+    "format-code": "prettier --write ./src --cache",
     "test": "vitest --coverage"
   },
   "peerDependencies": {

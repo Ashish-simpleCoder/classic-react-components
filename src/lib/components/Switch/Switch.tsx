@@ -1,5 +1,7 @@
+'use client'
+
 import type { ReactNode } from 'react'
-import React, { Children, useRef } from 'react'
+import React, { useRef } from 'react'
 
 type SwitchProps<T> = {
    children: ({
@@ -65,10 +67,7 @@ export default function Switch<T>({ children, item }: SwitchProps<T>) {
    const { props } = children({ Case: functionsRefObj.current.Case, Default: functionsRefObj.current.Default })
 
    let new_child: JSX.Element | null = null
-   const defaultCase = {
-      present: false,
-      index: 0,
-   }
+   let defaultCase: JSX.Element | null = null
 
    // handling case for when only one children is passed
    if (
@@ -89,31 +88,31 @@ export default function Switch<T>({ children, item }: SwitchProps<T>) {
    }
 
    if ('children' in props && Array.isArray(props.children) && props.children.length > 0) {
-      Children.forEach(props.children, (child: JSX.Element, i) => {
+      for (let i = 0; i < props.children.length; i++) {
+         const child: JSX.Element = props.children[i]
+
          if (!child || (child?.type?.name != 'Default' && child?.type?.name != 'Case')) {
             console.warn('You must use Default or Case component inside Switch')
+            continue
          }
          // check if it is <Case> case
          if (child?.type?.name == 'Case') {
             // if passed <item> prop is equal to the <Case> component's <value> prop, then assign it to <new_child> state
             if (child?.props?.value === item) {
                new_child = child
-               return
+               break
             }
          }
          // check if <Default> case is present or not
          if (child?.type?.name == 'Default') {
-            if (defaultCase.present) {
-               console.warn('You can not use multiple Default-Case inside Switch')
-               return
+            if (!defaultCase) {
+               defaultCase = child
             }
-            defaultCase.present = true
-            defaultCase.index = i
          }
-      })
+      }
       // if no-other cases match and <Default> case is present, then assign the <Default> to the <new_child> state
-      if (!new_child && defaultCase.present) {
-         new_child = props?.children[defaultCase.index]
+      if (!new_child && defaultCase) {
+         new_child = defaultCase
       }
    }
 

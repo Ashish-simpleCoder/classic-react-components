@@ -26,7 +26,7 @@ import React from 'react'
       )
    }
 */
-export default function For<T extends any[]>({
+export default function For<T extends readonly any[]>({
    data,
    children = null,
 }: {
@@ -35,14 +35,17 @@ export default function For<T extends any[]>({
 }) {
    if (!data || children === null) return <></>
 
-   if (typeof children != 'function') {
-      throw new Error('Children type must be a function.')
+   if (!Array.isArray(data)) {
+      throw new Error(`Type of data prop must be an array, but got ${typeof data} type.`)
    }
 
-   let arr: JSX.Element[] = []
-   for (let i = 0; i < Number(data.length); i++) {
-      const element = children(data[i], i)
-      arr.push(element)
+   if (typeof children != 'function') {
+      throw new Error(`Type of children prop must be a function but got ${typeof children} type.`)
+   }
+
+   const arr: JSX.Element[] = new Array(data.length)
+   for (let i = 0; i < data.length; i++) {
+      arr.push(children(data[i], i))
    }
 
    return <>{arr}</>

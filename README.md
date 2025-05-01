@@ -1,7 +1,12 @@
 # 🚀 classic-react-components
 
-- A Simple React Library of `Utility Components`.
-- Write jsx in `maintainable` and `readable` way, and fun too.
+## Intro
+
+- Simplifying the way you write conditional and loops in JSX.
+
+- Adding `If-Else` like syntax for conditional jsx.
+- Adding `For` component to map over the data within jsx.
+- Adding `Switch-Case` to your jsx.
 
 
 <br />
@@ -20,10 +25,11 @@
 
 ## Features
 
-- Comes with treeshaking
-- Typescript support
+- Built in Typescript
+- Supports Treeshaking
 - Small bundle size
 - Minimal and Easy to use
+- Open Source
 
 ## Installation
 
@@ -37,6 +43,11 @@ For pnpm users
 
 ```bash
 $ pnpm install classic-react-components
+```
+For bun users
+
+```bash
+$ bun install classic-react-components
 ```
 
 For yarn users
@@ -53,30 +64,27 @@ $ yarn add classic-react-components
 -  [For](#for)
 -  [Switch](#switch)
 
-### If
+## If
 
 | Prop      |   Type    | Required | Default Value | Description                                                                                  |
 | --------- | :-------: | :------: | :-----------: | -------------------------------------------------------------------------------------------- |
-| condition |    any    |    ❌    |     false     | Based on evaluation of the condition flag the component will return null or children         |
-| children  | ReactNode |    ❌    |     null      | To render the children                                                                       |
-| suspense  |  boolean  |    ❌    |     false     | Needed to show fallback until its children have finished loading                             |
-| fallback  | ReactNode |    ❌    |     null      | Fallback needed to show until the component is loaded fully. Needed for suspensed components |
+| condition |    any    |    ❌    |     false     | Based on the evaluation of `condition` prop, either children or null will be rendered         |
+| children  | ReactNode |    ❌    |     null      |      Renders the passed children                                                                 |
+| suspense  |  boolean  |    ❌    |     false     | Used for rendering lazily loaded components                              |
+| fallback  | ReactNode |    ❌    |     null      | Used for showing the fallback until the suspensed children have been loaded.  |
 
 ### Working
 
--  Based on the condition the children are rendered.
--  If the condition is true then the childeren will render otherwise it will return null.
+-  Based on evaulation of the condition flag the children are rendered.
+-  If the condition is true then it will render the children otherwise null.
+-  Working with one child
+   -  If condition is true then child will be rendered.
+   -  If condition is false then null gets rendered.
+-  Working with children(more than one child)
+   -  If condition is true then the first child will be rendered.
+   -  Otherwise the all of the children will be rendered excluding the first child.
 
--  For one children
-
-   -  If condition is true then children will be rendered.
-   -  If condition is false then null gets returned.
-
--  For multiple children
-   -  If conndition is true then the first children will rendered.
-   -  Otherwise the all of the children will be rendered excluding the first children.
-
-### Example
+### Examples
 
 ```tsx
 import { If } from 'classic-react-components'
@@ -106,7 +114,7 @@ export default function YourComponent() {
 }
 ```
 
-### Usage with Suspense
+#### <i>Usage with Suspense</i>
 
 ```tsx
 import { If, Then, Else } from 'classic-react-components'
@@ -133,7 +141,35 @@ export default function YourComponent() {
 }
 ```
 
-### Then
+
+### Replacing ternary and short-circuit
+
+```tsx
+   const show = true // some state, which will be toggled to true|false
+
+   // ❌ ternary operator
+  { show ? <h1>main content</h1>:<h1>fallback</h1> }
+   // ❌ short circuit 
+  { show && <h1>main content</h1> }
+
+
+   // ✅ replace ternary
+   <If>
+      <Then>
+         <h1>main content</h1>
+      </Then>
+      <Else>
+         <h1>fallback</h1>
+      </Else>
+   </If>
+
+   // ✅ replace short circuit
+   <If>
+      <h1>main content</h1>
+   </If>
+```
+
+## Then
 
 | Prop     |   Type    | Required | Default Value | Description                 |
 | -------- | :-------: | :------: | :-----------: | --------------------------- |
@@ -144,7 +180,7 @@ export default function YourComponent() {
 -  It should be used in-conjunction with `If` commponent.
 -  It renders the passed children.
 
-### Example
+### Examples
 
 ```tsx
 import { If, Then } from 'classic-react-components'
@@ -162,7 +198,7 @@ export default function YourComponent() {
 }
 ```
 
-### Else
+## Else
 
 | Prop     |   Type    | Required | Default Value | Description                 |
 | -------- | :-------: | :------: | :-----------: | --------------------------- |
@@ -173,7 +209,7 @@ export default function YourComponent() {
 -  It should be used in-conjunction with `If` commponent.
 -  It renders the passed children.
 
-### Example
+### Examples
 
 ```tsx
 import { If, Then, Else } from 'classic-react-components'
@@ -194,19 +230,20 @@ export default function YourComponent() {
 }
 ```
 
-### For
+## For
 
 | Prop     |   Type    | Required | Default Value | Description                                    |
 | -------- | :-------: | :------: | :-----------: | ---------------------------------------------- |
-| data     |   Array   |    ❌    |   undefined   | Needed for mapping                             |
+| data     |   Array   |    ❌    |   undefined   | Used for looping over the data and rendering the children                             |
 | children | ReactNode |    ❌    |     null      | Renders the `JSX` returned from child function |
 
 ### Working
 
--  Replacement for Array.map().
+-  Replacement of `Array.map` method used for rendering the list in jsx.
 -  Used to iterate over an array of items and renders the `JSX` based on the provided child function.
 
-### Example
+
+### Examples
 
 ```tsx
 import { For } from 'classic-react-components'
@@ -229,21 +266,41 @@ export default function YourComponent() {
 }
 ```
 
-### Switch
+### Replacing Array.map used in jsx for rendering the list
+
+```tsx
+   const data = [1,2,3]   // some async data
+
+   // ❌ using Array.map to render jsx
+   {data.length > 0 && data.map((item, index) => {
+      return <CardComponent key={item.id}>{item.course}</CardComponent>
+   })}
+
+
+   // ✅ using For component to render jsx without needing to check if data is defined or not
+   <For data={data}>
+      {(item, index) => {
+         return <CardComponent key={item.id}>{item.course}</CardComponent>
+      }}
+   </For>
+```
+
+
+## Switch
 
 | Prop     |   Type    | Required | Default Value | Description                                                      |
 | -------- | :-------: | :------: | :-----------: | ---------------------------------------------------------------- |
-| item     |    any    |    ❌    |   undefined   | The value of Switch                                              |
-| children | ReactNode |    ✅    |       -       | Renders the children of matched case if found, else default case |
+| item     |    any    |    ❌    |   undefined   | The value used for comparing with all of the cases                                              |
+| children | ReactNode |    ✅    |       -       | Used for rendering the children of matched case if found, else Default Case's children will be rendered |
 
 ### Working
 
 -  Renders the children of particular matched case for given prop `item(switch value)`.
--  If no case matches for given prop `item`, the `Default` case will be rendered.
+-  If none of cases are matched for given prop `item`, the `Default` case will be rendered.
 
 > **Note:** The order of Default Case does not matter.
 
-### Example
+### Examples
 
 ```tsx
 import { Switch } from 'classic-react-components'
@@ -272,4 +329,47 @@ export default function YourComponent({ item }: { item: 'coding' | 'sleep' }) {
       </div>
    )
 }
+
+```
+### Replacing object switching for rendering the jsx
+```tsx
+   const item: "sleep"|"coding" = "sleep"
+
+   // ❌ using old object switching
+   // first define seperate object and match the case manually and can not define fallback case here at all
+   const itemSwitches = {
+      "coding":<div>coing-case</div>,
+      "sleep":<div>sleep-case</div>,
+   }
+   const MatchedCase = itemSwitches(item) ?? <div>fallback</div> // manually giving fallback
+
+   // render in the jsx
+   {MatchedCase}
+
+
+
+   // ✅ using Switch component 
+
+   // much better, we do not have to lookup for the switch logic and jumping between states and jsx unlike with Object switching
+
+   // it support default case if no case is matched. we can not do it in one plase with object switching
+
+   // it is typesafe
+   <Switch item={item}>
+      {({ Case, Default }) => {
+         return (
+            <>
+               <Case value='coding'>
+                  <div>coing-case</div>
+               </Case>
+               <Case value='sleep'>
+                  <div>sleep-case</div>
+               </Case>
+               <Default>
+                  <div>this is default case</div>
+               </Default>
+            </>
+         )
+      }}
+   </Switch> 
 ```
