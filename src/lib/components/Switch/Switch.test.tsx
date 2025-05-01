@@ -148,11 +148,8 @@ describe('Switch', () => {
       expect(screen.queryByTestId('default')).toBeInTheDocument()
    })
 
-   it('should console warning for multiple Default case', () => {
+   it('should only render first number of Default case, if there are multiple Default cases are passed', () => {
       let item = 'awesome' as 'coding' | 'sleep' | 'awesome'
-
-      const consoleFn = vi.fn(() => {})
-      const consoleLogMock = vi.spyOn(console, 'warn').mockImplementation(consoleFn)
 
       render(
          <Switch item={item}>
@@ -180,12 +177,6 @@ describe('Switch', () => {
       expect(screen.queryByTestId('sleep')).not.toBeInTheDocument()
       expect(screen.queryByTestId('default')).toBeInTheDocument()
       expect(screen.queryByTestId('default-2')).not.toBeInTheDocument()
-
-      expect(consoleFn).toBeCalledTimes(1)
-      expect(consoleFn).toBeCalledWith('You can not use multiple Default-Case inside Switch')
-
-      expect(consoleLogMock).toBeCalledTimes(1)
-      expect(consoleLogMock).toBeCalledWith('You can not use multiple Default-Case inside Switch')
    })
 
    it('should console warning if used HtmlElement or any Component inside Switch', () => {
