@@ -2,7 +2,11 @@
 
 ## Intro
 
-Rethinking the way you write JSX. 
+- Simplifying the way you write conditional and loops in JSX.
+
+- Adding `If-Else` like syntax for conditional jsx.
+- Adding `For` component to map over the data within jsx.
+- Adding `Switch-Case` to your jsx.
 
 
 <br />
