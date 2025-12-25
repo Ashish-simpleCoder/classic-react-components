@@ -235,7 +235,7 @@ export default function YourComponent() {
 | Prop     |   Type    | Required | Default Value | Description                                    |
 | -------- | :-------: | :------: | :-----------: | ---------------------------------------------- |
 | data     |   Array   |    ❌    |   undefined   | Used for looping over the data and rendering the children                             |
-| children | ReactNode |    ❌    |     null      | Renders the `JSX` returned from child function |
+| children | ((item: T[number], i: number) => JSX.Element) | null |    ❌    |     null      | Renders the `JSX` returned from child function |
 
 ### Working
 
