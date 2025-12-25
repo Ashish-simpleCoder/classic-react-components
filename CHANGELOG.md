@@ -1,5 +1,19 @@
 # classic-react-components
 
+## 0.4.0
+
+### Minor Changes
+
+-  d727403: ## Features
+
+   ### Repeat component
+
+   ```tsx
+   <Repeat times={3}>
+      <div>this is content</div>
+   </Repeat>
+   ```
+
 ## 0.3.0
 
 ### Minor Changes
