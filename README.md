@@ -62,7 +62,9 @@ $ yarn add classic-react-components
 -  [Then](#then)
 -  [Else](#else)
 -  [For](#for)
+-  [Repeat](#repeat)
 -  [Switch](#switch)
+
 
 ## If
 
@@ -283,6 +285,59 @@ export default function YourComponent() {
          return <CardComponent key={item.id}>{item.course}</CardComponent>
       }}
    </For>
+```
+
+
+## Repeat
+
+| Prop     |   Type    | Required | Default Value | Description                                    |
+| -------- | :-------: | :------: | :-----------: | ---------------------------------------------- |
+| times     |   number   |    ❌    |   0   | Times to repeat the children                             |
+| children |     JSX.Element \| (()=> JSX.Element) |  ❌   |     undefined      | children needed to repeat |
+
+### Working
+
+- Used for rendering template or loaders in repeated manner without writing `new Array(length).map()` code.
+- Just pass `times` and `children` props, and children will be renderd `n times` automatically.
+
+
+
+### Examples
+
+#### 1. Passing children as default JSX
+```tsx
+import { Repeat } from 'classic-react-components'
+
+export default function YourComponent() {
+   
+   return (
+      <div>
+        <Repeat times={1}>
+           <div>this is going to repeated</div>
+        </Repeat>
+      </div>
+   )
+}
+```
+
+#### 2. Passing children as function which renders jsx (used to dynamically injecting things in jsx).
+```tsx
+import { Repeat } from 'classic-react-components'
+
+export default function YourComponent() {
+   const someState = "this is text"
+   return (
+      <div>
+        <Repeat times={3}>
+          {(idx) => {
+            return (
+              <div>this is content-{idx}- {someState}</div>
+            )
+          }}
+        </Repeat>
+      </div>
+   )
+}
 ```
 
 
